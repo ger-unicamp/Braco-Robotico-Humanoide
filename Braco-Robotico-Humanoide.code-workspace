@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "Firmware-Braco (PlatformIO project)",
+			"path": "Firmware-Braco"
+		}
+	],
+	"settings": {}
+}
