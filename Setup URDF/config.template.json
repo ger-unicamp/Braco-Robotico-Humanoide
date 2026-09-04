@@ -1,0 +1,49 @@
+{
+  "documentId": "[ID DA URL DO ONSHAPE]",
+  "assemblyName": "[NOME DO ASSEMBLY NO ONSHAPE]",
+  "outputFormat": "urdf",
+  "robotName": "braco_ger_v2",
+  "packageName": "braco_ger_description",
+  "addDummyBaseLink": true,
+  "drawFrames": false,
+  "drawCollisions": false,
+  "useScads": true,
+  "mergeSTLs": false,
+  "simplifySTLs": true,
+  "maxSTLSize": 3,
+  "jointMaxEffort": {
+    "default": 1.5,
+    "dof_base": 2.5,
+    "dof_ombro": 2.5,
+    "dof_cotovelo": 2.5
+  },
+  "jointMaxVelocity": 22,
+  "dynamics": {
+    "coloque_aqui_o_nome_exato_da_peca_do_mg996r": {
+      "mass": 0.055,
+      "com": [0.0, 0.0, 0.015],
+      "inertia": [
+        1.0e-5, 0.0, 0.0,
+        0.0, 1.0e-5, 0.0,
+        0.0, 0.0, 1.0e-5
+      ]
+    },
+    "coloque_aqui_o_nome_exato_da_peca_do_mg90s": {
+      "mass": 0.014,
+      "com": [0.0, 0.0, 0.005],
+      "inertia": [
+        1.0e-6, 0.0, 0.0,
+        0.0, 1.0e-6, 0.0,
+        0.0, 0.0, 1.0e-6
+      ]
+    }
+  },
+  "ignore": [
+    "coloque_aqui_o_nome_exato_da_peca_do_mg996r",
+    "coloque_aqui_o_nome_exato_da_peca_do_mg90s",
+    "parafuso",
+    "porca",
+    "sargento",
+    "suporte_mesa"
+  ]
+}
