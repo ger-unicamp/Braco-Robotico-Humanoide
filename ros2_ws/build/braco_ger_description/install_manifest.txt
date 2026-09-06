@@ -1,0 +1,15 @@
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/braco_ger_description/share/ament_index/resource_index/package_run_dependencies/braco_ger_description
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/braco_ger_description/share/ament_index/resource_index/parent_prefix_path/braco_ger_description
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/braco_ger_description/share/braco_ger_description/environment/ament_prefix_path.sh
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/braco_ger_description/share/braco_ger_description/environment/ament_prefix_path.dsv
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/braco_ger_description/share/braco_ger_description/environment/path.sh
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/braco_ger_description/share/braco_ger_description/environment/path.dsv
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/braco_ger_description/share/braco_ger_description/local_setup.bash
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/braco_ger_description/share/braco_ger_description/local_setup.sh
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/braco_ger_description/share/braco_ger_description/local_setup.zsh
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/braco_ger_description/share/braco_ger_description/local_setup.dsv
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/braco_ger_description/share/braco_ger_description/package.dsv
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/braco_ger_description/share/ament_index/resource_index/packages/braco_ger_description
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/braco_ger_description/share/braco_ger_description/cmake/braco_ger_descriptionConfig.cmake
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/braco_ger_description/share/braco_ger_description/cmake/braco_ger_descriptionConfig-version.cmake
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/braco_ger_description/share/braco_ger_description/package.xml

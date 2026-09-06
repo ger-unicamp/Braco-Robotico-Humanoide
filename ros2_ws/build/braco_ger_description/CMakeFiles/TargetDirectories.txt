@@ -1,0 +1,9 @@
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/braco_ger_description/CMakeFiles/uninstall.dir
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/braco_ger_description/CMakeFiles/braco_ger_description_uninstall.dir
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/braco_ger_description/CMakeFiles/test.dir
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/braco_ger_description/CMakeFiles/edit_cache.dir
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/braco_ger_description/CMakeFiles/rebuild_cache.dir
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/braco_ger_description/CMakeFiles/list_install_components.dir
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/braco_ger_description/CMakeFiles/install.dir
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/braco_ger_description/CMakeFiles/install/local.dir
+/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/braco_ger_description/CMakeFiles/install/strip.dir

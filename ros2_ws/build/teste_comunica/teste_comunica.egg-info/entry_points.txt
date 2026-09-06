@@ -1,0 +1,2 @@
+[console_scripts]
+talker_teste = teste_comunica.talker_teste:main

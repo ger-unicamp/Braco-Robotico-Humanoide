@@ -1,0 +1,33 @@
+[5.299s] Invoking command in '/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/src/teste_comunica': PYTHONPATH=/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/teste_comunica/prefix_override:/home/rafachoyos/.local/share/pipx/venvs/colcon-core/lib/python3.13/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/teste_comunica/lib/python3.13/site-packages:${PYTHONPATH} /home/rafachoyos/.local/share/pipx/venvs/colcon-core/bin/python -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/teste_comunica build --build-base /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/teste_comunica/build install --record /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/teste_comunica/install.log --single-version-externally-managed install_data
+[6.426s] running egg_info
+[6.530s] creating ../../build/teste_comunica/teste_comunica.egg-info
+[6.531s] writing ../../build/teste_comunica/teste_comunica.egg-info/PKG-INFO
+[6.532s] writing dependency_links to ../../build/teste_comunica/teste_comunica.egg-info/dependency_links.txt
+[6.532s] writing entry points to ../../build/teste_comunica/teste_comunica.egg-info/entry_points.txt
+[6.533s] writing requirements to ../../build/teste_comunica/teste_comunica.egg-info/requires.txt
+[6.533s] writing top-level names to ../../build/teste_comunica/teste_comunica.egg-info/top_level.txt
+[6.533s] writing manifest file '../../build/teste_comunica/teste_comunica.egg-info/SOURCES.txt'
+[6.712s] reading manifest file '../../build/teste_comunica/teste_comunica.egg-info/SOURCES.txt'
+[6.714s] writing manifest file '../../build/teste_comunica/teste_comunica.egg-info/SOURCES.txt'
+[6.715s] running build
+[6.715s] running build_py
+[6.715s] creating /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/teste_comunica/build/lib/teste_comunica
+[6.715s] copying teste_comunica/talker_teste.py -> /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/teste_comunica/build/lib/teste_comunica
+[6.715s] copying teste_comunica/__init__.py -> /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/teste_comunica/build/lib/teste_comunica
+[6.716s] running install
+[6.726s] running install_lib
+[6.793s] creating /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/teste_comunica/lib/python3.13/site-packages/teste_comunica
+[6.793s] copying /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/teste_comunica/build/lib/teste_comunica/talker_teste.py -> /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/teste_comunica/lib/python3.13/site-packages/teste_comunica
+[6.794s] copying /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/teste_comunica/build/lib/teste_comunica/__init__.py -> /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/teste_comunica/lib/python3.13/site-packages/teste_comunica
+[6.797s] byte-compiling /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/teste_comunica/lib/python3.13/site-packages/teste_comunica/talker_teste.py to talker_teste.cpython-313.pyc
+[6.797s] byte-compiling /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/teste_comunica/lib/python3.13/site-packages/teste_comunica/__init__.py to __init__.cpython-313.pyc
+[6.798s] running install_data
+[6.798s] creating /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/teste_comunica/share/ament_index/resource_index/packages
+[6.798s] copying resource/teste_comunica -> /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/teste_comunica/share/ament_index/resource_index/packages
+[6.799s] copying package.xml -> /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/teste_comunica/share/teste_comunica
+[6.799s] running install_egg_info
+[6.875s] Copying ../../build/teste_comunica/teste_comunica.egg-info to /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/teste_comunica/lib/python3.13/site-packages/teste_comunica-0.0.0-py3.13.egg-info
+[6.876s] running install_scripts
+[7.243s] Installing talker_teste script to /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/teste_comunica/lib/teste_comunica
+[7.243s] writing list of installed files to '/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/teste_comunica/install.log'
+[7.335s] Invoked command in '/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/src/teste_comunica' returned '0': PYTHONPATH=/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/teste_comunica/prefix_override:/home/rafachoyos/.local/share/pipx/venvs/colcon-core/lib/python3.13/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/teste_comunica/lib/python3.13/site-packages:${PYTHONPATH} /home/rafachoyos/.local/share/pipx/venvs/colcon-core/bin/python -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/teste_comunica build --build-base /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/teste_comunica/build install --record /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/teste_comunica/install.log --single-version-externally-managed install_data

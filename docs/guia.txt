@@ -1,0 +1,30 @@
+
+Processo para criar o teste_ros_py:
+
+(na pasta src)
+> ros2 pkg create --build-type ament_python --node-name the_talker teste_ros_py
+
+- Nodes estarão na subpasta teste_ros_py
+
+- Editei the_talker.py
+- Criei the_listener.py
+
+- Adicionar dependências no package.xml:
+    <exec_depend>rclpy</exec_depend>
+    <exec_depend>std_msgs</exec_depend>
+
+- Adiionar entry point do novo nó criado no setup.py:
+    entry_points={
+        'console_scripts': [
+            'the_talker = teste_ros_py.the_talker:main',
+            'the_listener = teste_ros_py.the_listener:main', <<<<<<<<
+        ],
+    },
+
+
+(na pasta 'Estrutura ROS')
+> colcon build
+
+> source ./install/setup.zsh
+
+> ros2 run teste_ros_py nome_node

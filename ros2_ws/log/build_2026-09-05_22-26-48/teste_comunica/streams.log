@@ -1,0 +1,25 @@
+[4.019s] Invoking command in '/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/src/teste_comunica': PYTHONPATH=/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/teste_comunica/prefix_override:/home/rafachoyos/.local/share/pipx/venvs/colcon-core/lib/python3.13/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/teste_comunica/lib/python3.13/site-packages:${PYTHONPATH} /home/rafachoyos/.local/share/pipx/venvs/colcon-core/bin/python -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/teste_comunica build --build-base /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/teste_comunica/build install --record /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/teste_comunica/install.log --single-version-externally-managed install_data
+[5.007s] running egg_info
+[5.059s] writing ../../build/teste_comunica/teste_comunica.egg-info/PKG-INFO
+[5.060s] writing dependency_links to ../../build/teste_comunica/teste_comunica.egg-info/dependency_links.txt
+[5.061s] writing entry points to ../../build/teste_comunica/teste_comunica.egg-info/entry_points.txt
+[5.061s] writing requirements to ../../build/teste_comunica/teste_comunica.egg-info/requires.txt
+[5.061s] writing top-level names to ../../build/teste_comunica/teste_comunica.egg-info/top_level.txt
+[5.184s] reading manifest file '../../build/teste_comunica/teste_comunica.egg-info/SOURCES.txt'
+[5.186s] writing manifest file '../../build/teste_comunica/teste_comunica.egg-info/SOURCES.txt'
+[5.186s] running build
+[5.187s] running build_py
+[5.187s] copying teste_comunica/talker_teste.py -> /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/teste_comunica/build/lib/teste_comunica
+[5.187s] copying teste_comunica/__init__.py -> /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/teste_comunica/build/lib/teste_comunica
+[5.188s] running install
+[5.200s] running install_lib
+[5.262s] running install_data
+[5.262s] copying resource/teste_comunica -> /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/teste_comunica/share/ament_index/resource_index/packages
+[5.263s] copying package.xml -> /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/teste_comunica/share/teste_comunica
+[5.263s] running install_egg_info
+[5.317s] removing '/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/teste_comunica/lib/python3.13/site-packages/teste_comunica-0.0.0-py3.13.egg-info' (and everything under it)
+[5.317s] Copying ../../build/teste_comunica/teste_comunica.egg-info to /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/teste_comunica/lib/python3.13/site-packages/teste_comunica-0.0.0-py3.13.egg-info
+[5.319s] running install_scripts
+[5.596s] Installing talker_teste script to /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/teste_comunica/lib/teste_comunica
+[5.597s] writing list of installed files to '/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/teste_comunica/install.log'
+[5.651s] Invoked command in '/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/src/teste_comunica' returned '0': PYTHONPATH=/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/teste_comunica/prefix_override:/home/rafachoyos/.local/share/pipx/venvs/colcon-core/lib/python3.13/site-packages/colcon_core/task/python/colcon_distutils_commands:/home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/install/teste_comunica/lib/python3.13/site-packages:${PYTHONPATH} /home/rafachoyos/.local/share/pipx/venvs/colcon-core/bin/python -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/teste_comunica build --build-base /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/teste_comunica/build install --record /home/rafachoyos/Documents/Facul/GER/BracoRobotico/Braco-Robotico-Humanoide/ros2_ws/build/teste_comunica/install.log --single-version-externally-managed install_data
