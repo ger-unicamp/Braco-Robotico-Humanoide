@@ -1,10 +1,11 @@
 {
 	"folders": [
 		{
+			"name": "Braco-Robotico-Humanoide (REPO)",
 			"path": "."
 		},
 		{
-			"name": "Firmware-Braco (PlatformIO project)",
+			"name": "Firmware Braço (PIO)",
 			"path": "Firmware-Braco"
 		}
 	],

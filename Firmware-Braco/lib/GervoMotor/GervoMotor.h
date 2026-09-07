@@ -1,5 +1,4 @@
-#ifndef GERVOMOTOR_H
-#define GERVOMOTOR_H
+#pragma once
 
 #include <Arduino.h> // Essencial para incluir tipos e funções do framework
 
@@ -43,5 +42,3 @@ private:
     bool _isAttached = false; // Flag para saber se o servo foi configurado
     int _currentAngle = -1; // Armazena o ângulo atual do servo
 };
-
-#endif
