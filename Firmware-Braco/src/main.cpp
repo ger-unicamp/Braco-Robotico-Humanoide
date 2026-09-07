@@ -5,11 +5,16 @@
 
 
 // Terminais 1, 2, 3, 4, 5 e 6 do circuito
-const uint8_t PINOS_MOTORES[] = { 15, 4, 5, 19, 22, 23 };
+const uint8_t PIN_MOTOR[] = { 15, 4, 5, 19, 22, 23 };
 
-#define BUTTON_SELECT 27
-#define BUTTON_LEFT 26
-#define BUTTON_RIGHT 14
+// Botões SELECT, LEFT, RIGHT
+const uint8_t PIN_BUTTON[] = { 27, 26, 14};
+const int numButtons = 3;
+bool buttonState[] = { false, false, false };
+
+#define BUTTON_SELECT 0
+#define BUTTON_LEFT 1
+#define BUTTON_RIGHT 2
 
 #define LED_ESP32 2
 #define LED_PULSO 2
@@ -25,28 +30,41 @@ GervoMotor *servos[] = {&servo1, &servo2, &servo3, &servo4, &servo5};
 GervoMotor *selectedServo = servos[0];
 const int numServos = 5; // Mudar para 6 se for usar o último
 
-bool buttonSelectState = false;
-bool pulseButtonSelect();
+bool pulseButton(uint8_t button_id);
+
+void blink(uint8_t pin);
 
 BracoPacket packetIn;
+
+bool overwriteControls = false;
 
 void setup()
 {
     Serial.begin(115200);
+    delay(500);
+    Serial.println("Iniciando Setup!");
+    Serial.flush();
 
-    pinMode(BUTTON_SELECT, INPUT);
-    pinMode(BUTTON_LEFT, INPUT);
-    pinMode(BUTTON_RIGHT, INPUT);
-
+    for (int i = 0; i < numButtons; i++)
+    {
+        pinMode(PIN_BUTTON[i], INPUT);
+    }
+    
     pinMode(LED_ESP32, OUTPUT);
     //pinMode(LED_PULSO, OUTPUT); no momento é o mesmo led do esp32
-
+    
     for (int i = 0; i < numServos; i++)
     {
-        servos[i]->attach(PINOS_MOTORES[i], i+1);
+        servos[i]->attach(PIN_MOTOR[i], i+1);
     }
 
+    digitalWrite(LED_ESP32, HIGH);
+    delay(5000);
+    
+
     beginWifiUDP(WIFI_SSID, WIFI_PASSWORD, UDP_PORT, LED_ESP32);
+
+    Serial.flush();
 }
 
 void loop()
@@ -54,78 +72,59 @@ void loop()
     if (isTherePacket(&packetIn, AUTH_PACKET))
     {
         Serial.println("Pacote recebido!");
-        Serial.printf("Ângulos: %.1f, %.1f, %.1f, %.1f, %.1f | Extras: %d, %d\n",
+        Serial.printf("Comando: %d | Ângulos: %.1f, %.1f, %.1f, %.1f, %.1f | Extras: %d, %d\n",
+            packetIn.command,
             packetIn.angles[0], packetIn.angles[1], packetIn.angles[2], 
             packetIn.angles[3], packetIn.angles[4], 
             packetIn.extra1, packetIn.extra2);
+
+        blink(LED_ESP32);
     }
+
+    if (pulseButton(BUTTON_SELECT))
+    {
+        Serial.println("SELECT pressionado!");
+        blink(LED_ESP32);
+    }
+
+    if (pulseButton(BUTTON_LEFT))
+    {
+        Serial.println("LEFT pressionado!");
+        blink(LED_ESP32);
+    }
+
+    if (pulseButton(BUTTON_RIGHT))
+    {
+        Serial.println("RIGHT pressionado!");
+        blink(LED_ESP32);
+    }
+
+    delay(50);
 }
 
-bool pulseButtonSelect()
+bool pulseButton(uint8_t button_id)
 {
-    if (buttonSelectState == false && digitalRead(BUTTON_SELECT))
+    int pin = PIN_BUTTON[button_id];
+
+    if (buttonState[button_id] == false && digitalRead(pin))
     {
         delay(10); // Debounce
-        if (digitalRead(BUTTON_SELECT))
+        if (digitalRead(pin))
         {
-            buttonSelectState = true;
+            buttonState[button_id] = true;
             return true;
         }
     }
 
-    if (digitalRead(BUTTON_SELECT) == false)
-        buttonSelectState = false;
+    if (digitalRead(pin) == false)
+        buttonState[button_id] = false;
 
     return false;
 }
 
-
-/*
-int positions[] = {0, 90, 180, 90};
-int posIndex = 0;
-int numPositions = sizeof(positions) / sizeof(positions[0]);
-
-int selectedIndex = 0; // Servos
-
-void loopAntigo()
+void blink(uint8_t pin)
 {
-
-    // Passos grandes pra um motor
-    /*if (pulseButtonSelect())
-    {
-      Serial.println("SELECT!");
-
-      digitalWrite(LED_PULSO, true);
-      delay(100);
-      digitalWrite(LED_PULSO, false);
-
-      servoPulso.writeAngle(positions[posIndex]);
-      posIndex = (posIndex + 1) % numPositions;
-    }/
-
-    // Alterna motores, controle "fluído"
-    /*if (pulseButtonSelect())  // alterna motor
-    {
-      Serial.println("SELECT!");
-
-      digitalWrite(LED_PULSO, true);
-      delay(100);
-      digitalWrite(LED_PULSO, false);
-
-      selectedIndex = (selectedIndex + 1) % numServos;
-      selectedServo = servos[selectedIndex];
-    }
-
-    // controle "fluído" do motor selecionado
-    if (digitalRead(BUTTON_LEFT))
-    {
-      selectedServo->writeAngle(selectedServo->getCurrentAngle() + 5);
-      delay(25);
-    }
-    else if (digitalRead(BUTTON_RIGHT))
-    {
-      selectedServo->writeAngle(selectedServo->getCurrentAngle() - 5);
-      delay(25);
-    }/
+    digitalWrite(pin, HIGH);
+    delay(10);
+    digitalWrite(pin, LOW);
 }
-*/
