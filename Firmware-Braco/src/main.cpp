@@ -4,39 +4,46 @@
 #include "appconfig.h"
 
 
-// Terminais 1, 2, 3, 4, 5 e 6 do circuito
-const uint8_t PIN_MOTOR[] = { 15, 4, 5, 19, 22, 23 };
-
-// Botões SELECT, LEFT, RIGHT
-const uint8_t PIN_BUTTON[] = { 27, 26, 14};
+// BOTÕES 
+const uint8_t PIN_BUTTON[] = { 27, 26, 14}; // (SELECT, LEFT, RIGHT)
 const int numButtons = 3;
 bool buttonState[] = { false, false, false };
-
+bool clickedJustNow[] = { false, false, false };
 #define BUTTON_SELECT 0
 #define BUTTON_LEFT 1
 #define BUTTON_RIGHT 2
 
-#define LED_ESP32 2
-#define LED_PULSO 2
 
+// LEDS
+#define LED_ESP32 2
+
+
+// MOTORES
+// Mapeamento dos pinos dos motores por id (de 0 a 4)
+const uint8_t PIN_MOTOR[] = { 15, 4, 5, 19, 22, 23 };   // Terminais 1, 2, 3, 4, 5 e 6 do circuito
+// O circuito tem 6 terminais mas só estamos usando 5 motores
 // Definições para os servos (MUDAR ESSES NOMES DEPOIS, ESTÁ DA ESQUERDA PARA A DIREITA)
 GervoMotor servo1;
 GervoMotor servo2;
 GervoMotor servo3;
 GervoMotor servo4;
 GervoMotor servo5;
-
+// Mapeamento dos objetos servos por ids correspondentes aos pinos (de 0 a 4)
 GervoMotor *servos[] = {&servo1, &servo2, &servo3, &servo4, &servo5};
 GervoMotor *selectedServo = servos[0];
-const int numServos = 5; // Mudar para 6 se for usar o último
+const int numServos = 5;
 
-bool pulseButton(uint8_t button_id);
 
-void blink(uint8_t pin);
+// DECLARAÇÕES DE FUNÇÕES
+void blink(uint8_t pin = LED_ESP32);
+void spinButtons();
+void spinUDPControl();
+void spinOverrideSystem();
+void checkOverrideSystemChange();
 
 BracoPacket packetIn;
 
-bool overwriteControls = false;
+bool overrideSystemIsActive = false;
 
 void setup()
 {
@@ -51,7 +58,6 @@ void setup()
     }
     
     pinMode(LED_ESP32, OUTPUT);
-    //pinMode(LED_PULSO, OUTPUT); no momento é o mesmo led do esp32
     
     for (int i = 0; i < numServos; i++)
     {
@@ -69,37 +75,24 @@ void setup()
 
 void loop()
 {
-    if (isTherePacket(&packetIn, AUTH_PACKET))
-    {
-        Serial.println("Pacote recebido!");
-        Serial.printf("Comando: %d | Ângulos: %.1f, %.1f, %.1f, %.1f, %.1f | Extras: %d, %d\n",
-            packetIn.command,
-            packetIn.angles[0], packetIn.angles[1], packetIn.angles[2], 
-            packetIn.angles[3], packetIn.angles[4], 
-            packetIn.extra1, packetIn.extra2);
+    // Lógica que identifica quais botões etão/foram clicados neste "frame"
+    spinButtons();
+    
+    // Normalmente queremos receber comandos do PC (UDPControl)
+    if (overrideSystemIsActive) spinOverrideSystem();
+    else spinUDPControl();
 
-        blink(LED_ESP32);
-    }
-
-    if (pulseButton(BUTTON_SELECT))
-    {
-        Serial.println("SELECT pressionado!");
-        blink(LED_ESP32);
-    }
-
-    if (pulseButton(BUTTON_LEFT))
-    {
-        Serial.println("LEFT pressionado!");
-        blink(LED_ESP32);
-    }
-
-    if (pulseButton(BUTTON_RIGHT))
-    {
-        Serial.println("RIGHT pressionado!");
-        blink(LED_ESP32);
-    }
+    // Checa a combinação de botões para ativar o modo override
+    checkOverrideSystemChange();
 
     delay(50);
+}
+
+void blink(uint8_t pin)
+{
+    digitalWrite(pin, HIGH);
+    delay(10);
+    digitalWrite(pin, LOW);
 }
 
 bool pulseButton(uint8_t button_id)
@@ -112,6 +105,7 @@ bool pulseButton(uint8_t button_id)
         if (digitalRead(pin))
         {
             buttonState[button_id] = true;
+            blink();
             return true;
         }
     }
@@ -122,9 +116,90 @@ bool pulseButton(uint8_t button_id)
     return false;
 }
 
-void blink(uint8_t pin)
+void spinButtons()
 {
-    digitalWrite(pin, HIGH);
-    delay(10);
-    digitalWrite(pin, LOW);
+    for (int i = 0; i < numButtons; i++)
+    {
+        clickedJustNow[i] = pulseButton(i);
+    }
+}
+
+void printPacketIn()
+{
+    Serial.println("Pacote recebido!");
+    Serial.printf("Comando: %d | Ângulos: %.1f, %.1f, %.1f, %.1f, %.1f | Extras: %d, %d\n",
+        packetIn.command,
+        packetIn.angles[0], packetIn.angles[1], packetIn.angles[2], 
+        packetIn.angles[3], packetIn.angles[4], 
+        packetIn.extra1, packetIn.extra2);
+}
+
+void spinUDPControl()
+{
+    // Checa se há pacote chegando, se não houver, não tem nada pra fazer
+    if (!isTherePacket(&packetIn, AUTH_PACKET))
+    {
+        return;
+    }
+
+    // Chegou pacote! Está armazenado no objeto 'packetIn'
+
+    // Print do pacote para debug
+    printPacketIn();
+
+    // Manda os valores dos ângulos recebidos para os motores:
+    for (int i = 0; i < numServos; i++)
+    {
+        // O valor vem em radianos e o servo pede graus
+        float rads = packetIn.angles[i];
+        int degrees = (int)round(rads * 180.0f / PI);
+        servos[i]->writeAngle(degrees);
+    }
+
+    blink();
+}
+
+unsigned long _overrideCombinationStart;
+bool _wasOverrideCombinationOnLastFrame;
+
+void checkOverrideSystemChange()
+{
+    if ( ! (buttonState[BUTTON_SELECT] && buttonState[BUTTON_RIGHT] && buttonState[BUTTON_LEFT]) )
+    {
+        // Combinação de override não está feita
+        _wasOverrideCombinationOnLastFrame = false;
+        return;
+    }
+
+    if (_wasOverrideCombinationOnLastFrame == false)
+    {
+        _wasOverrideCombinationOnLastFrame = true;
+        _overrideCombinationStart = millis();
+        return;
+    }
+    
+    if (millis() - _overrideCombinationStart > 5)
+    {
+        // Hora de alternar o modo
+        overrideSystemIsActive = !overrideSystemIsActive;
+        _wasOverrideCombinationOnLastFrame = false; // segurança para não ficar alternando loucamente após os 5 segundos
+
+        // Aviso de troca do sistema
+        Serial.print("Override System atualizado para: ");
+        Serial.println(overrideSystemIsActive);
+        for (int i = 0; i < 10; i++)
+        {
+            digitalWrite(LED_ESP32, HIGH);
+            delay(100);
+            digitalWrite(LED_ESP32, LOW);
+            delay(100);
+        }
+    }
+}
+
+void spinOverrideSystem()
+{
+    // TODO
+    // TODO
+    // TODO
 }
