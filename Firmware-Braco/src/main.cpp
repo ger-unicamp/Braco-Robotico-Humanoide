@@ -3,6 +3,10 @@
 #include <BracoUDP.h>
 #include "appconfig.h"
 
+#define OVERRIDE_COMBINATION_TIME 5
+#define SERVO_ANGLE_STEP 5
+#define SEVO_STEPS_DELAY 100
+
 
 // BOTÕES 
 const uint8_t PIN_BUTTON[] = { 27, 26, 14}; // (SELECT, LEFT, RIGHT)
@@ -32,6 +36,7 @@ GervoMotor servo5;
 GervoMotor *servos[] = {&servo1, &servo2, &servo3, &servo4, &servo5};
 GervoMotor *selectedServo = servos[0];
 const int numServos = 5;
+int _selectedServoIndex = 0;
 
 
 // DECLARAÇÕES DE FUNÇÕES
@@ -48,7 +53,7 @@ bool overrideSystemIsActive = false;
 void setup()
 {
     Serial.begin(115200);
-    delay(500);
+    delay(1000);
     Serial.println("Iniciando Setup!");
     Serial.flush();
 
@@ -178,7 +183,7 @@ void checkOverrideSystemChange()
         return;
     }
     
-    if (millis() - _overrideCombinationStart > 5)
+    if (millis() - _overrideCombinationStart > OVERRIDE_COMBINATION_TIME)
     {
         // Hora de alternar o modo
         overrideSystemIsActive = !overrideSystemIsActive;
@@ -199,7 +204,28 @@ void checkOverrideSystemChange()
 
 void spinOverrideSystem()
 {
-    // TODO
-    // TODO
-    // TODO
+    if (clickedJustNow[BUTTON_SELECT] && !buttonState[BUTTON_LEFT] && !buttonState[BUTTON_RIGHT])
+    {
+        // SELECT foi clicado
+        // alterna o servo selecionado para controle:
+        _selectedServoIndex = (_selectedServoIndex + 1) % numServos;
+        selectedServo = servos[_selectedServoIndex];
+    }
+    else if (clickedJustNow[BUTTON_LEFT] && !buttonState[BUTTON_SELECT] && !buttonState[BUTTON_RIGHT])
+    {
+        // LEFT foi clicado
+        // subtrai um "passo" do ângulo do servo selecionado
+        int newAngle = selectedServo->getCurrentAngle() - SERVO_ANGLE_STEP;
+        selectedServo->writeAngle(newAngle); // a lógica interna do Gervo já dá constarin entre os limites (0 a 180)
+        delay(SEVO_STEPS_DELAY);
+    }
+    else if (clickedJustNow[BUTTON_RIGHT] && !buttonState[BUTTON_SELECT] && !buttonState[BUTTON_LEFT])
+    {
+        // RIGHT foi clicado
+        // adiciona um "passo" do ângulo do servo selecionado
+        int newAngle = selectedServo->getCurrentAngle() + SERVO_ANGLE_STEP;
+        selectedServo->writeAngle(newAngle); // a lógica interna do Gervo já dá constarin entre os limites (0 a 180)
+        delay(SEVO_STEPS_DELAY);
+    }
+    
 }
