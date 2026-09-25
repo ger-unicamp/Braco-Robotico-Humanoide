@@ -7,6 +7,10 @@
 #define SERVO_ANGLE_STEP 5
 #define SEVO_STEPS_DELAY 100
 
+#define SPIN_MSG_TIME 5000
+unsigned long _lastSpinMsgTime = 0;
+int _spinMsgCount = 0;
+
 
 // BOTÕES 
 const uint8_t PIN_BUTTON[] = { 27, 26, 14}; // (SELECT, LEFT, RIGHT)
@@ -24,7 +28,7 @@ bool clickedJustNow[] = { false, false, false };
 
 // MOTORES
 // Mapeamento dos pinos dos motores por id (de 0 a 4)
-const uint8_t PIN_MOTOR[] = { 15, 4, 5, 19, 22, 23 };   // Terminais 1, 2, 3, 4, 5 e 6 do circuito
+const uint8_t PIN_MOTOR[] = { 15, 5, 19, 22, 23, 4 };   // Terminais 1, 2, 3, 4, 5 e 6 do circuito
 // O circuito tem 6 terminais mas só estamos usando 5 motores
 // Definições para os servos (MUDAR ESSES NOMES DEPOIS, ESTÁ DA ESQUERDA PARA A DIREITA)
 GervoMotor servo1;
@@ -86,6 +90,17 @@ void loop()
     // Normalmente queremos receber comandos do PC (UDPControl)
     if (overrideSystemIsActive) spinOverrideSystem();
     else spinUDPControl();
+
+    // Print que mostra que está vivo
+    if (millis() - _lastSpinMsgTime > SPIN_MSG_TIME)
+    {
+        if (overrideSystemIsActive) Serial.print("Spinning override system. ");
+        else Serial.print("Spinning UDP control. ");
+        Serial.println(_spinMsgCount);
+        _spinMsgCount++;
+
+        _lastSpinMsgTime = millis();
+    }
 
     // Checa a combinação de botões para ativar o modo override
     checkOverrideSystemChange();
